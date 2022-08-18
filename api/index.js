@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import authRouter from "./routes/auth.js";
 
 const app = express();
 dotenv.config();
@@ -19,9 +20,10 @@ mongoose.connection.on("disconnected", () =>
 
 mongoose.connection.on("connected", () => console.log("connection successful"));
 
-app.get("/", (req, res) => {
-  res.send("hello from API world");
-});
+//middleware
+app.use("/api", authRouter);
+app.use("/api/register", authRouter);
+
 app.listen(8080, () => {
   connect();
   console.log("listening on port 8080...");
