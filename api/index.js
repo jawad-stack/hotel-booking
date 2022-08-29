@@ -19,12 +19,10 @@ const connect = async () => {
 };
 
 mongoose.connection.on("disconnected", () =>
-  console.log("connection successfull")
+  console.log("connection successful")
 );
 
-mongoose.connection.on("connected", () =>
-  console.log("connection successfull")
-);
+mongoose.connection.on("connected", () => console.log("connection successful"));
 
 //middleware
 app.use(express.json());
